@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分页</title>
+</head>
+<body>
+<ul>
+{% for i in page %}
+    <li>{{ i.atitle }}</li>
+{% endfor %}
+</ul>
+<br>
+<ul>
+{# 判断当前传入的页面是否有前一页，有的话，显示上一页 #}
+{% if page.has_previous %}
+    <a href="/show_areas{{ page.previous_page_number }}">&lt;上一页</a>
+{% endif %}
+    {% for pindex in page.paginator.page_range %}
+        {# 当前页现实的时候，当前页面不显示为超链接 #}
+        {% if pindex == page.number %}
+            {{ pindex }}
+        {% else %}
+            <a href="/show_areas{{ pindex }}">{{ pindex }}</a>
+        {% endif %}
+    {% endfor %}
+{# 判断当前传入的页面是否有下一页，有的话，显示下一页 #}
+{% if page.has_next %}
+    <a href="/show_areas{{ page.next_page_number }}">下一页&gt;</a>
+{% endif %}
+</ul>
+</body>
+</html>
