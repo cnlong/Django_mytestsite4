@@ -12,4 +12,6 @@ urlpatterns = [
     path('prov', views.prov),
     re_path(r'^city(\d+)$', views.city),
     re_path(r'^dis(\d+)$', views.dis),
+    path('set_session', views.set_session),
+    path('get_session', views.get_session),
 ]
